@@ -4,7 +4,11 @@ import { AuthContext, type Session } from "./AuthContext";
 const SESSION_KEY = 'user_session';
 
 const getSession = (): Session | null => {
-    const { userName, board } = JSON.parse(localStorage.getItem(SESSION_KEY));
+    const session = localStorage.getItem(SESSION_KEY);
+
+    if (!session) return null;
+    
+    const { userName, board } = JSON.parse(session);
 
     if (!board || !userName || board.trim() === '' || userName.trim() === '') return null;
 

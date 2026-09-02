@@ -1,5 +1,6 @@
 import './App.css'
-import Modal from './components/Modal/Modal';
+import Board from './components/Board/Board';
+import CreateBoardForm from './components/CreateBoardForm/CreateBoardForm';
 import { useAuth } from './hooks/useAuth';
 
 const App = () => {
@@ -7,10 +8,11 @@ const App = () => {
 
   return (
     <>
+    <h1>{session?.board ?? 'Board'}</h1>
     {
       session
-      ? <h1>Board</h1>
-      : <Modal><button>Need auth</button></Modal>
+      ? <Board />
+      : <CreateBoardForm />
     }
     </>
   );

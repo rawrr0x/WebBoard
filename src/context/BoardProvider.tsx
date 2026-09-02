@@ -10,7 +10,11 @@ export const BoardProvider = ({ children }: PropsWithChildren) => {
     const userName = session?.userName;
     const board = session?.board;
 
-    const [tasks, setTasks] = useState<Task[] | null>([]);
+    const [tasks, setTasks] = useState<Task[]>([]);
+    // const [todoTasks, setTodoTasks] = useState<Task[]>([]);
+    // const [progress, setProgressTasks] = useState<Task[]>([])
+    // const [reviewTasks, setReviewTasks] = useState<Task[]>([]);
+    // const [doneTasks, setDoneTasks] = useState<Task[]>([]);
     const [onlineUsers, setOnlineUsers] = useState<string[]>([]);
 
     const socketRef = useRef<BoardSocket | null>(null);

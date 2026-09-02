@@ -1,7 +1,10 @@
 import { useState } from "react";
 import Input from "../UI/Input/Input";
+import { useAuth } from "../../hooks/useAuth";
+import Modal from "../Modal/Modal";
 
 const CreateBoardForm = () => {
+    const { login } = useAuth();
 
     const [name, setName] = useState('');
     const [board, setBoard] = useState('');
@@ -12,11 +15,14 @@ const CreateBoardForm = () => {
 
         if (trimmedName === '' || trimmedBoard === '') return;
 
-        //rework
+        login({
+            userName: trimmedName,
+            board: trimmedBoard,
+        });
     };
 
     return (
-        <div>
+        <Modal>
             <Input 
                 placeholder="Name..."
                 value={name}
@@ -27,8 +33,22 @@ const CreateBoardForm = () => {
                 value={board}
                 onChange={(e) => setBoard(e.target.value)}
             />
-            <button onClick={handleSubmit}>Login</button>
-        </div>
+            <button
+                onClick={handleSubmit}
+                style={{
+                    minWidth: '80px',
+                    minHeight: '27px',
+                    borderRadius: '12px',
+                    outline: 'none',
+                    border: 'none',
+                    backgroundColor: '#fff',
+                    color: '#363636ff',
+                    boxShadow: '0 0 8px #7b7b7b',
+                }}
+            >
+                Login
+            </button>
+        </Modal>
     );
 };
 

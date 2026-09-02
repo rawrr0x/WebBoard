@@ -1,0 +1,16 @@
+.button {
+    min-width: 100px;
+    min-height: 30px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 0 8px #7b7b7b;
+    outline: none;
+    border: none;
+    color: black;
+    transition: 150ms;
+}
+
+.button:hover {
+    outline: 1px #7b7b7b;
+    box-shadow: 0 0 16px #7b7b7b;
+}
