@@ -4,13 +4,20 @@ import http from 'http';
 
 const app = express();
 const server = http.createServer(app);
-const port = 5000;
+const port = 5005;
 
 const rooms = new Map();
 
 app.get('/', (req, res) => {
   res.send('Real-Time tasks board')
 });
+
+// task: {
+//     id: string,
+//     status: string,
+//     title: string,
+//     description: string,
+// }
 
 const getRoom = (roomName) => {
   if (!rooms.has(roomName)) {
@@ -46,7 +53,7 @@ io.on('connection', (socket) => {
     socket.join(roomName);
     room.users.set(socket.id, userName);
 
-    socket.emit('tasks', JSON.stringify(room.messages));
+    socket.emit('tasks', JSON.stringify(room.tasks));
     socket.emit('joined', JSON.stringify({ roomName, isNewRoom }));
     broadcastOnlineUsers(roomName);
   });
