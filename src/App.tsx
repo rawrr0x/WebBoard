@@ -4,7 +4,6 @@ const App = () => {
 
   return (
     <>
-      <h1>WebBoard</h1>
     </>
   );
 };
