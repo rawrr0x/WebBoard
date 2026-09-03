@@ -50,6 +50,8 @@ io.on('connection', (socket) => {
     socket.data.userName = userName;
     socket.data.roomName = roomName;
 
+    console.log(userName + ' connected');
+
     socket.join(roomName);
     room.users.set(socket.id, userName);
 
