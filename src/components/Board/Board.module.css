@@ -4,6 +4,7 @@
     background-color: #fff;
     align-items: center;
     flex-direction: column;
+    justify-content: center;
     width: 80vw;
     height: 70vh;
     gap: 20px;
@@ -14,7 +15,7 @@
     align-items: center;
     justify-content: space-around;
     width: 90%;
-    height: 80%;
+    height: 82%;
 }
 
 .tasks_block {
@@ -26,4 +27,13 @@
     border-radius: 12px;
     width: 23%;
     height: 100%;
+}
+
+.tasks_block_body {
+    display: flex;
+    align-items: end;
+    justify-content: center;
+    gap: 20px;
+    flex-direction: column;
+    padding: 10px;
 }

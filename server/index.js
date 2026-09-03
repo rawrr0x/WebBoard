@@ -87,6 +87,20 @@ io.on('connection', (socket) => {
     io.to(roomName).emit('task_create', data);
   });
 
+  socket.on('task_update', (data) => {
+    const { roomName } = socket.data;
+
+    if (!roomName) return;
+
+    const room = getRoom(roomName);
+    const updatedTask = JSON.parse(data);
+    const expiredTask = room.tasks.findIndex(task => task.id === updatedTask.id);
+
+    expiredTask.status = updatedTask.status;
+
+    io.to(roomName).emit('task_update', JSON.stringify(expiredTask));
+  });
+
   const leaveRoom = () => {
     const { userName, roomName } = socket.data;
 

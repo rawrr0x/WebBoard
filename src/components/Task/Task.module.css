@@ -1,0 +1,23 @@
+.task {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 0 8px #7b7b7b;
+    transition: 150ms;
+    color: rgb(78, 78, 78);
+}
+
+.task:hover {
+    box-shadow: 0 0 15px #7b7b7b;
+}
+
+.task_block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* border: 1px solid #717171; */
+    width: 100%;
+}

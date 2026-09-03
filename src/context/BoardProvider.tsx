@@ -1,7 +1,7 @@
-import { useEffect, useMemo, useRef, useState, type PropsWithChildren } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, type PropsWithChildren } from "react";
 import { useAuth } from "../hooks/useAuth";
 import type { Task } from "../types/board";
-import { createSocket, emitJoin, parseOnlineUsersMessage, parseTaskMessage, parseTasksMessage, type BoardSocket } from "../lib/socket";
+import { createSocket, emitJoin, emitTaskCreate, parseOnlineUsersMessage, parseTaskMessage, parseTasksMessage, type BoardSocket } from "../lib/socket";
 import { BoardContext } from "./BoardContext";
 
 export const BoardProvider = ({ children }: PropsWithChildren) => {
@@ -18,6 +18,22 @@ export const BoardProvider = ({ children }: PropsWithChildren) => {
     const [onlineUsers, setOnlineUsers] = useState<string[]>([]);
 
     const socketRef = useRef<BoardSocket | null>(null);
+
+    const sendTask = useCallback((title: string, description: string) => {
+        const socket = socketRef.current;
+        const trimmedTitle = title.trim();
+        const trimmedDescription = description.trim();
+
+        if (trimmedTitle === '' || trimmedDescription === '') return;
+
+        emitTaskCreate(socket, {
+            id: Date.now(),
+            title: trimmedTitle,
+            description: trimmedDescription,
+            status: 'toDo',
+            createdAt: `${new Date().toLocaleTimeString()} - ${new Date().toLocaleDateString()}`,
+        });
+    }, [userName]);
 
     useEffect(() => {
         if (!userName || !board) return;
@@ -48,6 +64,8 @@ export const BoardProvider = ({ children }: PropsWithChildren) => {
 
         socket.on('online_users', (data) => setOnlineUsers(parseOnlineUsersMessage(data)));
 
+        socket.connect();
+
         return () => {
             socket.disconnect();
             socketRef.current = null;
@@ -57,7 +75,7 @@ export const BoardProvider = ({ children }: PropsWithChildren) => {
         };
     }, [userName, board]);
 
-    const contextValue = useMemo(() => ({ tasks, onlineUsers }), [tasks, onlineUsers]);
+    const contextValue = useMemo(() => ({ tasks, onlineUsers, sendTask }), [tasks, onlineUsers, sendTask]);
 
     return <BoardContext value={contextValue}>{children}</BoardContext>
 };

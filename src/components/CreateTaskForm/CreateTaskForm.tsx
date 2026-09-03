@@ -2,25 +2,23 @@ import { useState } from 'react';
 import Input from '../UI/Input/Input';
 import cl from './CreateTaskForm.module.css';
 import Button from '../UI/Button/Button';
+import { useBoard } from '../../hooks/useBoard';
 
 const CreateTaskForm = () => {
+    const { sendTask } = useBoard();
+
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
 
     const handleCreate = () => {
-        const trimmedTitle = title.trim();
-        const trimmedDescription = description.trim();
-
-        if (trimmedTitle === '' || trimmedDescription === '') return;
-
-        // emit task create
+        sendTask(title, description);
 
         setTitle('');
         setDescription('');
     };
 
     return (
-        <div className={cl.create_task_form}>
+        <div className={cl.task_form}>
             <Input 
                 placeholder='Title...'
                 value={title}
