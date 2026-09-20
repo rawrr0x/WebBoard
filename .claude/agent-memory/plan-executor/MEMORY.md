@@ -1,0 +1,1 @@
+- [WebBoard project architecture](project_webboard.md) — Feature-based React/TS frontend + Express/Socket.io backend; port 5005; NodeNext TS on server

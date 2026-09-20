@@ -1,0 +1,22 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100svh;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 320px;
+  padding: 32px;
+  border: 1px solid var(--border, #ccc);
+  border-radius: 12px;
+}
+
+.title {
+  margin: 0 0 8px;
+  font-size: 20px;
+  text-align: center;
+}

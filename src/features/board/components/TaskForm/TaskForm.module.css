@@ -1,0 +1,21 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 300px;
+  padding: 20px;
+  color: white;
+  align-items: center;
+}
+
+.title {
+  margin: 0 0 4px;
+  font-size: 18px;
+}
+
+.select {
+  padding: 8px 12px;
+  border: 1px solid var(--border, #ccc);
+  border-radius: 6px;
+  font-size: 14px;
+}

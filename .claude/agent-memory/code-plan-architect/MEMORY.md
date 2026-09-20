@@ -1,0 +1,1 @@
+- [WebBoard project context](project_webboard.md) - Real-time task board: React 19, Zustand, Socket.io, feature-based arch, TypeScript backend
