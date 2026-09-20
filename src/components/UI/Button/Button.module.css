@@ -1,17 +1,21 @@
 .button {
     min-width: 100px;
     min-height: 30px;
-    background-color: #fff;
-    border-radius: 12px;
-    box-shadow: 0 0 8px #7b7b7b;
+    background-color: #de0cd4;
+    border-radius: 15px;
     outline: none;
     border: none;
-    color: black;
+    color: rgb(255, 255, 255);
+    font-weight: 700;
     font: var(--heading);
-    transition: 150ms;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 200ms;
 }
 
 .button:hover {
-    outline: 1px #7b7b7b;
-    box-shadow: 0 0 16px #7b7b7b;
+    border: 2px solid #de0cd4;
+    background-color: white;
+    color: #de0cd4;
 }

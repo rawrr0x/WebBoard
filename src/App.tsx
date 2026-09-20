@@ -1,19 +1,19 @@
+import { useState } from 'react';
 import './App.css'
-import Board from './components/Board/Board';
-import CreateBoardForm from './components/CreateBoardForm/CreateBoardForm';
 import { useAuth } from './hooks/useAuth';
+import Modal from './components/Modal/Modal';
+import LoginForm from './components/LoginForm/LoginForm';
 
 const App = () => {
   const { session } = useAuth();
 
+  const [modal, setModal] = useState(false);
+
   return (
     <>
-    <h1>{session?.board ?? 'Board'}</h1>
-    {
-      session
-      ? <Board />
-      : <CreateBoardForm />
-    }
+    <h1>{session?.board ?? 'Real-Time Board'}</h1>
+    { modal && <Modal onClose={() => setModal(false)}><LoginForm onLogin={() => setModal(false)}/></Modal> }
+    <button onClick={() => setModal(true)}>Open</button>
     </>
   );
 };
